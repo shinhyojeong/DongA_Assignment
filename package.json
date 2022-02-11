@@ -1,0 +1,37 @@
+{
+  "name": "donga_assignment",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "https://github.com/Shinhyojeong/DongA_Assignment.git",
+  "author": "Shinhyojeong <hyojeonge0@naver.com>",
+  "license": "MIT",
+  "scripts": {
+    "prod": "webpack serve --mode=production",
+    "dev": "webpack serve --open --mode=development",
+    "build": "webpack --mode=production"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.2",
+    "@babel/eslint-parser": "^7.17.0",
+    "@babel/preset-env": "^7.16.11",
+    "babel-loader": "^8.2.3",
+    "css-loader": "^6.6.0",
+    "eslint": "^8.8.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "html-webpack-plugin": "^5.5.0",
+    "mini-css-extract-plugin": "^2.5.3",
+    "prettier": "^2.5.1",
+    "sass": "^1.49.7",
+    "sass-loader": "^12.4.0",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
+  },
+  "dependencies": {
+    "d3": "^7.3.0",
+    "gsap": "npm:@gsap/member",
+    "html-loader": "^3.1.0",
+    "mapbox-gl": "^2.7.0"
+  }
+}
