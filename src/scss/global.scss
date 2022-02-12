@@ -1,0 +1,15 @@
+@import 'scss-reset/_reset.scss';
+
+body {
+    font-family: 'NotoSansKR';
+    src: url('../assets/font/NotoSansKR-Regular.otf') format('otf')
+}
+
+section {
+    width: 100%;
+    height: 100vh;
+
+    .container {
+        height: 100%;
+    }
+}
