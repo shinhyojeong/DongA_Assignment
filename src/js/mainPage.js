@@ -1,5 +1,6 @@
 import { gsap, TextPlugin, ScrollTrigger } from 'gsap/all'
 import { COVID19 } from '../constants/index'
+import '../assets/scss/mainPage.scss'
 
 const pageContainer = document.querySelector('.page1 .container')
 const txtBox = pageContainer.querySelector('.txt-box')
