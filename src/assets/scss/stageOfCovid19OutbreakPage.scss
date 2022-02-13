@@ -1,0 +1,50 @@
+@use './mixins';
+@import "~mapbox-gl/src/css/mapbox-gl.css";
+
+.page2 {
+    .container {
+        position: relative;
+
+        @include mixins.center-align;
+
+        .map-box {
+            position: absolute;
+            z-index: -300;
+            width: 100%;
+            height: 100%;
+
+            #map {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+
+        }
+
+        .txt-box {
+            position: absolute;
+            bottom: 0;
+            width: 450px;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            opacity: 0;
+
+            @include mixins.flex-column(10px);
+
+            .date {
+                font-size: 18px;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+.mapboxgl-canvas {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
