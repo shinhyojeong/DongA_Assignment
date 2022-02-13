@@ -35,6 +35,8 @@
     "html-loader": "^3.1.0",
     "mapbox-gl": "^2.7.0",
     "scss-reset": "^1.2.2",
-    "svg-url-loader": "^7.1.1"
+    "svg-url-loader": "^7.1.1",
+    "scrollmagic": "^2.0.8",
+    "scrollmagic-plugin-gsap": "^1.0.4"
   }
 }
