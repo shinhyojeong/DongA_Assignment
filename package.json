@@ -20,6 +20,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.4",
     "html-webpack-plugin": "^5.5.0",
+    "imports-loader": "^3.1.1",
     "mini-css-extract-plugin": "^2.5.3",
     "prettier": "^2.5.1",
     "sass": "^1.49.7",
@@ -33,6 +34,7 @@
     "gsap": "npm:@gsap/member@^3.9.1",
     "html-loader": "^3.1.0",
     "mapbox-gl": "^2.7.0",
-    "scss-reset": "^1.2.2"
+    "scss-reset": "^1.2.2",
+    "svg-url-loader": "^7.1.1"
   }
 }
