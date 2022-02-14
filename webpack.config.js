@@ -1,3 +1,4 @@
+const CopyPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
@@ -29,6 +30,14 @@ module.exports = {
       filename: './index.html',
     }),
     new MiniCssExtractPlugin({ filename: 'assets/css/style.css' }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: './src/data/covid_total_case_world_map.geojson',
+          to: './data/covid_total_case_world_map.geojson',
+        },
+      ],
+    }),
   ],
   module: {
     rules: [
