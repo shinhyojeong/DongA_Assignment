@@ -1,15 +1,23 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 
 module.exports = {
   entry: './src/index.js',
   output: {
     path: `${__dirname}/public/`,
-    filename: 'bundle.js',
+    filename: 'js/bundle.js',
     clean: true,
   },
   devServer: {
     port: 8080,
+  },
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false,
+      }),
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -20,10 +28,28 @@ module.exports = {
       template: './src/index.html',
       filename: './index.html',
     }),
-    new MiniCssExtractPlugin({ filename: 'css/style.css' }),
+    new MiniCssExtractPlugin({ filename: 'assets/css/style.css' }),
   ],
   module: {
     rules: [
+      {
+        test: /\.(otf)$/,
+        generator: {
+          filename: 'assets/fonts/[name][ext]',
+        },
+      },
+      {
+        test: /\.(svg)$/,
+        generator: {
+          filename: 'assets/icon/[name][ext]',
+        },
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        generator: {
+          filename: 'assets/images/[name][ext]',
+        },
+      },
       {
         test: /\.(js)$/,
         exclude: /node_modules/,
@@ -37,15 +63,6 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
         exclude: /node_modules/,
-      },
-      {
-        test: /\.svg$/,
-        use: {
-          loader: 'svg-url-loader',
-          options: {
-            encoding: 'base64',
-          },
-        },
       },
     ],
   },
