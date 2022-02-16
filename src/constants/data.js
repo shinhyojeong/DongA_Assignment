@@ -36,3 +36,6 @@ export const MAPBOX_DEFAULT_DATA = {
   },
   zoom: 2,
 }
+
+export const START_DATE = '2022-01-09'
+export const LAST_DATE = '2022-02-09'

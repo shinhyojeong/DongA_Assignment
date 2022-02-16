@@ -36,6 +36,10 @@ module.exports = {
           from: './src/data/covid_total_case_world_map.geojson',
           to: './data/covid_total_case_world_map.geojson',
         },
+        {
+          from: './src/data/covid_outbreak_status_chart.csv',
+          to: './data/covid_outbreak_status_chart.csv',
+        },
       ],
     }),
   ],
