@@ -6,10 +6,11 @@ async function makeCovidStatusChart() {
   const margin = { top: 20, right: 20, bottom: 30, left: 50 }
   const widthMargin = margin.left + margin.right
   const heightMargin = margin.top + margin.bottom
-  const width = 960 - widthMargin
+  const width = 780 - widthMargin
   const height = 500 - heightMargin
   const startDate = new Date(START_DATE)
   const lastDate = new Date(LAST_DATE)
+  const pointColor = 'rgb(67, 128, 97)'
 
   const xSize = d3.scaleTime().range([0, width])
   const ySize = d3.scaleLinear().range([height, 0])
@@ -19,10 +20,16 @@ async function makeCovidStatusChart() {
     .x((d) => xSize(d.date))
     .y((d) => ySize(d.total))
 
+  const valueArea = d3
+    .area()
+    .x((d) => xSize(d.date))
+    .y0(height)
+    .y1((d) => ySize(d.total))
+
   const svg = d3
-    .select('.page4 .container .graph-box')
+    .select('.page4 .graph-box')
     .append('svg')
-    .attr('width', width + widthMargin + 300)
+    .attr('width', width + widthMargin + 100)
     .attr('height', height + heightMargin)
     .append('g')
     .attr('transform', `translate(${margin.left},${margin.top})`)
@@ -40,10 +47,12 @@ async function makeCovidStatusChart() {
   xSize.domain(d3.extent(data, (d) => d.date))
   ySize.domain([0, d3.max(data, (d) => d.total)])
 
+  svg.append('path').attr('class', 'value-area').attr('d', valueArea(data))
+
   svg
     .append('g')
     .append('path')
-    .attr('class', 'line-graph')
+    .attr('class', 'value-line')
     .attr('d', valueLine(data))
 
   svg
@@ -57,8 +66,8 @@ async function makeCovidStatusChart() {
   focus
     .append('circle')
     .attr('class', 'hover-circle')
-    .style('fill', 'none')
-    .style('stroke', 'blue')
+    .style('fill', pointColor)
+    .style('stroke', pointColor)
     .attr('r', 4)
 
   focus
