@@ -10,7 +10,7 @@
         align-items: center;
         height: 100%;
 
-        @include mixins.center-align;
+        @include mixins.center-align_flex;
     }
 
     .txt-box {

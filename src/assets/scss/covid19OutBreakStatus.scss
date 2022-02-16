@@ -1,16 +1,15 @@
 @use './mixins';
-$point-color : rgb(67, 128, 97);
-$area-color: rgb(118, 175, 147);
+$point-color : #EF5454;
+$area-color: #E97575;
 
 .page4 {
-    @include mixins.center-align;
+    @include mixins.center-align_flex;
     height: 100vh;
 
     .container {
         display: flex;
         align-items: center;
         padding: 80px;
-
     }
 
     .graph {
