@@ -5,8 +5,9 @@ Vanilla JS를 활용한 실무 과제
 
 [DongA_Assignment Link](https://donga-corona-news-project.netlify.app//)
 
-## 🎬 시![donga_play1](https://user-images.githubusercontent.com/70738281/154229363-7ba87f59-103f-402a-b342-102e67b9074f.gif)
-연 영상
+## 🎬 시연 영상
+![donga_play1](https://user-images.githubusercontent.com/70738281/154229363-7ba87f59-103f-402a-b342-102e67b9074f.gif)
+
 
 ## 📖 기술스택
 - gsap
