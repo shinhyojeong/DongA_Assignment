@@ -1,1 +1,6 @@
-import './scss/index.scss'
+import './assets/scss/global.scss'
+import './js/mainPage'
+import './js/stageOfCovid19OutbreakPage'
+import './js/covid19WorldGlobePage'
+import './js/covid19OutBreakStatusPage'
+import './js/covid19PreventPage'

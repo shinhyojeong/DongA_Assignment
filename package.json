@@ -15,23 +15,30 @@
     "@babel/eslint-parser": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "babel-loader": "^8.2.3",
+    "copy-webpack-plugin": "^10.2.4",
     "css-loader": "^6.6.0",
     "eslint": "^8.8.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.4",
     "html-webpack-plugin": "^5.5.0",
+    "imports-loader": "^3.1.1",
     "mini-css-extract-plugin": "^2.5.3",
     "prettier": "^2.5.1",
     "sass": "^1.49.7",
     "sass-loader": "^12.4.0",
+    "terser-webpack-plugin": "^5.3.1",
     "webpack": "^5.68.0",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
     "d3": "^7.3.0",
-    "gsap": "npm:@gsap/member",
+    "globe.gl": "^2.24.4",
+    "gsap": "npm:@gsap/member@^3.9.1",
     "html-loader": "^3.1.0",
-    "mapbox-gl": "^2.7.0"
+    "mapbox-gl": "^2.7.0",
+    "scrollmagic": "^2.0.8",
+    "scrollmagic-plugin-gsap": "^1.0.4",
+    "scss-reset": "^1.2.2"
   }
 }

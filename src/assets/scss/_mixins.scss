@@ -1,0 +1,22 @@
+@mixin center-align_flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    @content;
+}
+
+@mixin flex-column($gapSize : 10px) {
+    display: flex;
+    flex-direction: column;
+    gap: $gapSize;
+}
+
+@mixin center-align_postion {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+
+    @content;
+}

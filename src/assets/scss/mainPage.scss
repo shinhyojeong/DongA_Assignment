@@ -1,0 +1,45 @@
+@use './mixins';
+
+.page1 {
+    position: relative;
+    background: url('../image/img_covid19.png');
+    background-size: cover;
+
+    .container {
+        display: flex;
+        align-items: center;
+        height: 100%;
+
+        @include mixins.center-align_flex;
+    }
+
+    .txt-box {
+        position: relative;
+        min-height: 140px;
+        text-align: center;
+        transform: translate(0, -10px);
+
+        .title {
+            font-size: 48px;
+            font-weight: 600;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            transform: translate(0, -4px);
+            font-size: 40px;
+        }
+    }
+
+    .icn-box {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        opacity: 1;
+
+        img {
+            width: 60px;
+        }
+    }
+}
