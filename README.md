@@ -14,6 +14,7 @@ Vanilla JS를 활용한 실무 과제
 - mapbox
 - d3
 - scrollmagic
+- threejs
 
 ## 🗂️ 디렉토리
 
