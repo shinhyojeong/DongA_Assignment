@@ -1,63 +1,89 @@
 @use './mixins';
+@use './mediaQuery';
+
 $point-color : #EF5454;
 $area-color: #E97575;
 
 .page4 {
     @include mixins.center-align_flex;
-    height: 100vh;
 
     .container {
-        display: flex;
-        align-items: center;
-        padding: 80px;
-    }
+        display: grid;
+        grid-template-columns: 2fr 1.2fr;
+        gap: 10%;
+        width: 90%;
+        padding: 10% 5%;
 
-    .graph {
-        &-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        &-box {
-            .value-line {
-                fill: none;
-                stroke: $point-color;
-                stroke-width: 1.5;
-            }
-
-            .value-area {
-                fill: $area-color;
-            }
-
-            .hover-circle {
-                fill: $point-color
-            }
-
-            .tooltip {
-                fill: white;
-                stroke: $point-color;
-                stroke-width: 2;
-                color: $point-color;
-            }
-        }
-    }
-
-    .txt {
-        &-title {
-            font-size: 32px;
-            font-weight: 600;
-            margin-bottom: 20px;
-
-            &_graph {
+        .txt {
+            &-title {
+                font-size: 32px;
                 font-weight: 600;
+                margin-bottom: 20px;
+
+                &_graph {
+                    font-weight: 600;
+                    text-align: center;
+                }
+            }
+
+            &-content {
+                margin-bottom: 10px;
+                font-size: 22px;
             }
         }
 
-        &-content {
-            margin-bottom: 10px;
-            font-size: 22px;
+
+    }
+
+    @include mediaQuery.tablet {
+
+        .container {
+            grid-template-columns: repeat(1, 1fr);
+            gap: 20px;
+            padding: 4%;
+
+            .txt {
+                &-title {
+                    font-size: 20px;
+                    font-weight: 600;
+                    margin-bottom: 10px;
+
+                    &_graph {
+                        font-weight: 600;
+                    }
+                }
+
+                &-content {
+                    font-size: 16px;
+                }
+            }
+
         }
     }
+
+    @include mediaQuery.mobile {
+
+        .container {
+            grid-template-columns: repeat(1, 1fr);
+            gap: 30px;
+
+            .txt {
+                &-title {
+                    font-size: 24px;
+                    font-weight: 600;
+                    margin-bottom: 10px;
+
+                    &_graph {
+                        font-weight: 600;
+                    }
+                }
+
+                &-content {
+                    font-size: 18px;
+                }
+            }
+
+        }
+    }
+
 }

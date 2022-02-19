@@ -1,4 +1,6 @@
 @use './mixins';
+@use './mediaQuery';
+
 @import "~mapbox-gl/src/css/mapbox-gl.css";
 
 .page2 {
@@ -37,13 +39,15 @@
                 font-weight: 500;
             }
         }
-    }
-}
 
-.mapboxgl-canvas {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
+        @include mediaQuery.mobile {
+            .txt-box {
+                width: 100%;
+                bottom: -70px;
+                padding: 10px;
+                // height: 100px;
+                // overflow-y: auto;
+            }
+        }
+    }
 }

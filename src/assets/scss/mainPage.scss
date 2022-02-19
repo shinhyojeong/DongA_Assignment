@@ -1,4 +1,5 @@
 @use './mixins';
+@use './mediaQuery';
 
 .page1 {
     position: relative;
@@ -40,6 +41,18 @@
 
         img {
             width: 60px;
+        }
+    }
+
+    @include mediaQuery.mobile {
+        .container {
+            .title {
+                font-size: 32px;
+            }
+
+            .typing-cursor {
+                font-size: 32px;
+            }
         }
     }
 }

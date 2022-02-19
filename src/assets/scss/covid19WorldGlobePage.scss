@@ -1,4 +1,5 @@
 @use './mixins';
+@use './mediaQuery';
 
 .page3 {
     position: relative;
@@ -27,11 +28,32 @@
             font-size: 18px;
             font-weight: bold;
         }
-    }
 
-    .globe-box {
-        .scene-tooltip {
-            background: yellowgreen;
+        .globe-box {
+            .scene-tooltip {
+                background: yellowgreen;
+            }
+        }
+
+        @include mediaQuery.tablet {
+            .txt-box {
+                top: 5px;
+                font-size: 18px;
+                padding: 3% 5%;
+            }
+        }
+
+        @include mediaQuery.mobile {
+            .txt-box {
+                top: 5px;
+                font-size: 16px;
+                padding: 3% 5%;
+            }
+
+            .mouse-hover {
+                width: 100%;
+                text-align: center;
+            }
         }
     }
 }

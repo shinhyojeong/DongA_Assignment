@@ -1,3 +1,8 @@
+@use './mediaQuery';
+$desktop-width : 2000px;
+$tablet-width : 1500px;
+$mobile-width: 1300px;
+
 .page5 {
     position: relative;
     display: flex;
@@ -5,84 +10,186 @@
     flex-direction: column;
     will-change: transform;
     box-sizing: border-box;
-    width: 2000px;
+    width: $desktop-width;
     background-color: #FCFCFC;
 
     .container {
         position: relative;
         display: flex;
         flex-direction: column;
-        padding: 30px 0;
         box-sizing: border-box;
-    }
 
-    .page-title {
-        font-size: 36px;
-        font-weight: 600;
-        margin: 0 5% 40px;
-    }
-
-    .img {
-
-        &-container {
-            display: flex;
-            gap: 200px;
-            margin: 0 5% 50px;
-        }
-
-        &-box {
-            &.bus {
-                width: 600px;
-                transform: (translate(0, 60%));
-            }
-
-            &.school {
-                transform: (translate(0, -15%));
-            }
-
-            img {
-                width: 100%;
-            }
-        }
-
-        &-road {
-            position: absolute;
-            top: 52%;
-            left: 0;
-            z-index: -300;
-            width: 2000px;
-
-            img {
-                width: 100%;
-            }
-        }
-
-        &-city {
-            position: absolute;
-            top: 0;
-            height: 0;
-            z-index: -400;
-        }
-    }
-
-    .txt {
-        &-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20%;
-            margin: 5% 5% 50px;
-        }
-
-        &-box {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        &-title {
-            font-size: 18px;
+        .page-title {
+            font-size: 36px;
             font-weight: 600;
+            margin: 2% 5% 0;
+        }
+
+        .img {
+
+            &-container {
+                position: absolute;
+                top: 20%;
+                display: flex;
+                gap: 8%;
+                width: 100%;
+                padding: 0 5% 50px;
+                box-sizing: border-box;
+            }
+
+            &-box {
+
+                &.bus {
+                    width: 30%;
+                    transform: (translate(0, 65%));
+                }
+
+                &.school {
+                    transform: (translate(0, -15%));
+                }
+
+                img {
+                    width: 80%;
+                }
+            }
+
+            &-road {
+                position: absolute;
+                top: 52%;
+                left: 0;
+                z-index: -300;
+                width: 100%;
+
+                img {
+                    width: 100%;
+                }
+            }
+
+            &-city {
+                position: absolute;
+                top: 0;
+                height: 0;
+                z-index: -400;
+            }
+        }
+
+        .txt {
+            &-container {
+                position: absolute;
+                bottom: 3%;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 18%;
+                margin: 0 5%;
+            }
+
+            &-box {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            &-title {
+                font-size: 18px;
+                font-weight: 600;
+            }
+        }
+
+
+    }
+
+    @include mediaQuery.tablet {
+        width: $tablet-width;
+
+        .container {
+            .page-title {
+                font-size: 30px;
+            }
+
+            .img {
+
+                &-container {
+                    top: 26%;
+                }
+
+                &-box {
+                    &.bus {
+                        width: 40%;
+                        transform: (translate(0, 70%));
+                    }
+
+                    img {
+                        width: 60%;
+                    }
+                }
+
+                &-road {
+                    top: 50%;
+
+                    img {
+                        height: 100px;
+                    }
+                }
+
+                &-city {
+                    img {
+                        height: 206px;
+                    }
+                }
+            }
         }
     }
 
+    @include mediaQuery.mobile {
+        width: $mobile-width;
+
+        .container {
+            .page-title {
+                font-size: 26px;
+                margin: 1.5% 2% 0;
+            }
+
+            .img {
+
+                &-container {
+                    top: 26%;
+                    padding: 0 3%;
+                }
+
+                &-box {
+                    &.bus {
+                        width: 50%;
+                        transform: (translate(0, 60%));
+                    }
+
+                    img {
+                        width: 60%;
+                    }
+                }
+
+                &-road {
+                    top: 50%;
+
+                    img {
+                        height: 100px;
+                    }
+                }
+
+                &-city {
+                    img {
+                        height: 178px;
+                    }
+                }
+            }
+
+            .txt {
+                &-container {
+                    bottom: 3%;
+                    gap: 10%;
+                    margin: 0 3%;
+                }
+            }
+        }
+
+    }
 }
