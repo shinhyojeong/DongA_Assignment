@@ -3,36 +3,15 @@ import '../assets/scss/covid19OutBreakStatus.scss'
 import { START_DATE, LAST_DATE } from '../constants/index'
 
 async function makeCovidStatusChart() {
-  const margin = { top: 20, right: 20, bottom: 30, left: 50 }
-  const widthMargin = margin.left + margin.right
-  const heightMargin = margin.top + margin.bottom
-  const width = 780 - widthMargin
-  const height = 500 - heightMargin
+  const heightValue = 300
+  const widthValue = 600
+  const strokeWidth = 1.5
+  const margin = { top: 0, bottom: 20, left: 30, right: 20 }
+  const width = 600 - margin.left - margin.right - strokeWidth * 2
+  const height = 300 - margin.top - margin.bottom
   const startDate = new Date(START_DATE)
   const lastDate = new Date(LAST_DATE)
   const pointColor = 'rgb(67, 128, 97)'
-
-  const xSize = d3.scaleTime().range([0, width])
-  const ySize = d3.scaleLinear().range([height, 0])
-
-  const valueLine = d3
-    .line()
-    .x((d) => xSize(d.date))
-    .y((d) => ySize(d.total))
-
-  const valueArea = d3
-    .area()
-    .x((d) => xSize(d.date))
-    .y0(height)
-    .y1((d) => ySize(d.total))
-
-  const svg = d3
-    .select('.page4 .graph-box')
-    .append('svg')
-    .attr('width', width + widthMargin + 100)
-    .attr('height', height + heightMargin)
-    .append('g')
-    .attr('transform', `translate(${margin.left},${margin.top})`)
 
   const rawData = await d3.csv('./data/covid_outbreak_status_chart.csv')
   const data = rawData
@@ -44,24 +23,57 @@ async function makeCovidStatusChart() {
     })
     .filter((d) => d.date >= startDate && d.date <= lastDate)
 
-  xSize.domain(d3.extent(data, (d) => d.date))
-  ySize.domain([0, d3.max(data, (d) => d.total)])
+  const svg = d3
+    .select('.page4 .container .graph-container .graph-box')
+    .append('svg')
+    .attr('viewBox', `0 0 ${widthValue} ${heightValue}`)
 
-  svg.append('path').attr('class', 'value-area').attr('d', valueArea(data))
+  const chart = svg.append('g').attr('transform', `translate(${margin.left},0)`)
 
-  svg
+  const graph = chart
     .append('g')
-    .append('path')
-    .attr('class', 'value-line')
-    .attr('d', valueLine(data))
+    .attr(
+      'transform',
+      `translate(-${margin.left - strokeWidth},-${margin.top})`
+    )
 
-  svg
+  const xSize = d3
+    .scaleTime()
+    .range([0, width - 100])
+    .domain(d3.extent(data, (d) => d.date))
+
+  const ySize = d3
+    .scaleLinear()
+    .range([height, 0])
+    .domain([0, d3.max(data, (d) => d.total)])
+
+  const valueArea = d3
+    .area()
+    .x((d) => xSize(d.date))
+    .y0(height)
+    .y1((d) => ySize(d.total))
+
+  graph
+    .append('path')
+    .attr('transform', `translate(${margin.left},0)`)
+    .style('fill', pointColor)
+    .attr('stroke', 'steelblue')
+    .attr('stroke-linejoin', 'round')
+    .attr('stroke-linecap', 'round')
+    .attr('stroke-width', strokeWidth)
+    .attr('d', valueArea(data))
+
+  chart
     .append('g')
     .attr('transform', `translate(0,${height})`)
-    .call(d3.axisBottom(xSize))
-  svg.append('g').call(d3.axisLeft(ySize))
+    .call(d3.axisBottom(xSize).ticks(8))
 
-  const focus = svg.append('g').style('display', 'none')
+  chart
+    .append('g')
+    .attr('transform', `translate(0, 0)`)
+    .call(d3.axisLeft(ySize))
+
+  const focus = chart.append('g').style('display', 'none')
 
   focus
     .append('circle')
@@ -75,17 +87,18 @@ async function makeCovidStatusChart() {
     .attr('class', 'tooltip')
     .attr('width', 100)
     .attr('height', 50)
-    .attr('x', 10)
-    .attr('y', -22)
+    .attr('y', -5)
     .attr('rx', 4)
     .attr('ry', 4)
-  focus.append('text').attr('class', 'tooltip-date').attr('x', 18).attr('y', -2)
-  focus.append('text').attr('x', 18).attr('y', 18).text('Total :')
+    .attr('fill', 'white')
+
+  focus.append('text').attr('class', 'tooltip-date').attr('x', 3).attr('y', 15)
+  focus.append('text').attr('x', 3).attr('y', 35).text('Total :')
   focus
     .append('text')
     .attr('class', 'tooltip-total')
-    .attr('x', 60)
-    .attr('y', 18)
+    .attr('x', 50)
+    .attr('y', 35)
 
   const handleMousemove = () => {
     const pointerX = xSize.invert(d3.pointer(event, this)[0])
@@ -93,6 +106,10 @@ async function makeCovidStatusChart() {
     const pointerIdx = bisectDate(data, pointerX, 1)
     const frontD = data[pointerIdx - 1]
     const backD = data[pointerIdx]
+    if (!backD) {
+      return
+    }
+
     const currentD =
       pointerX - frontD.date > backD.date - pointerX ? backD : frontD
     const dateFormatter = d3.timeFormat('%y/%m/%d')
@@ -110,14 +127,12 @@ async function makeCovidStatusChart() {
     .append('rect')
     .attr('width', width)
     .attr('height', height)
+    .attr('transform', `translate(${margin.left},0)`)
+    .attr('class', 'focus')
     .style('fill', 'none')
     .style('pointer-events', 'all')
-    .on('mouseover', function () {
-      focus.style('display', null)
-    })
-    .on('mouseout', function () {
-      focus.style('display', 'none')
-    })
+    .on('mouseover', () => focus.style('display', null))
+    .on('mouseout', () => focus.style('display', 'none'))
     .on('mousemove', handleMousemove)
 }
 
